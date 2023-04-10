@@ -1,0 +1,37 @@
+@font-face {
+    font-family: 'Monsterrat-Regular';
+    src: url('../assets/fonts/Montserrat-Regular.ttf');
+}
+@font-face {
+    font-family: 'Monsterrat-Bold';
+    src: url('../assets/fonts/Montserrat-Bold.ttf');
+}
+@font-face {
+    font-family: 'Monsterrat-SemiBold';
+    src: url('../assets/fonts/Montserrat-SemiBold.ttf');
+}
+
+.Menu{
+    width: 300px;
+    height: 100vh;
+    background-color: #eef2f3;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+.Buttons{
+    display: flex;
+    flex-direction: column;
+    margin-top: 6rem;
+    margin-left: 1rem;
+    font-family: 'Monsterrat-Regular';
+    font-size: 1.5rem;
+}
+.Buttons a{
+    text-decoration: none;
+    margin-bottom: 2.5rem;
+    /* font-weight: 800; */
+}
+.active{color: #2f82fe;} 
+.inactive{color: gray;}
+.Icon{margin-right: 20px;}
+.Icon svg{margin-bottom: -4px; font-size: 1.75rem;}

@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'Monsterrat-Regular';
+    src: url('../assets/fonts/Montserrat-Regular.ttf');
+}
+@font-face {
+    font-family: 'Monsterrat-Thin';
+    src: url('../assets/fonts/Montserrat-Thin.ttf');
+}
+.CurrentWeather{
+    max-width: 650px;
+    min-width: 384px;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/img/rainy_weather_dark.png');
+    margin-left: auto;
+    color: white;
+    padding-top: 1.75rem;
+}
+.Header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 7rem;
+}
+.Location h3{
+    font-family: 'Monsterrat-Regular';
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+.Location p{
+    font-family: 'Monsterrat-Regular';
+    font-size: 0.9rem;
+}
+.MainWeather{
+    margin: 4.5rem 7rem;
+}
+.Icon{
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+.WeatherData{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.WeatherData h1{
+    font-family: 'Monsterrat-Regular';
+    font-size: 3.5rem;
+}
+.WeatherData p{
+    font-family: 'Monsterrat-Regular';
+    font-size: 1.225rem;
+}

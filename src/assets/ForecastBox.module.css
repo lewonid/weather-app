@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'Monsterrat-Regular';
+    src: url('../assets/fonts/Montserrat-Regular.ttf');
+}
+@font-face {
+    font-family: 'Monsterrat-SemiBold';
+    src: url('../assets/fonts/Montserrat-SemiBold.ttf');
+}
+.ForecastBox{
+    display: flex;
+    background-color: rgb(248, 248, 248);
+    align-items: center;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem;
+    justify-content: space-between;
+}
+.Details{
+    display:flex;
+    align-items: center;
+}
+.ForecastIcon{
+    font-size: 2.5rem;
+    margin-right: 2rem;
+    margin-left: 1rem;
+}
+.ForecastBox svg{
+    color: #2f82fe;;
+}
+.Details h2{
+    font-family: 'Monsterrat-SemiBold';
+    font-size: 2rem;
+}
+.NightCelsius{
+    font-size: 1.5rem;
+    color: rgb(95, 129, 145);
+}
+.ForecastBox p:last-child{
+    margin-right: 1rem;
+}
+.ForecastBox p{
+    font-size: 1.35rem;
+}

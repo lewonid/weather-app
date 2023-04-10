@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Monsterrat-Regular';
+    src: url('../assets/fonts/Montserrat-Regular.ttf');
+}
+@font-face {
+    font-family: 'Monsterrat-SemiBold';
+    src: url('../assets/fonts/Montserrat-SemiBold.ttf');
+}
+.TodayOverview{
+    margin-top: 2rem;
+    /* max-width: 751px; */
+}
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+.header h2{
+    font-family:'Monsterrat-SemiBold';;
+}
+.header p{
+    font-family: 'Monsterrat-Regular';
+    color: #2f82fe;
+    font-size: 1.1rem;
+}
+.header span{
+    margin-left: 0.5rem;
+}
+.header svg{
+    margin-bottom: -2px;
+}
+.WeatherDetails{
+    display: flex;
+    flex-wrap: wrap;
+}

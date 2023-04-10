@@ -1,0 +1,7 @@
+.Dashboard{
+    max-width: 1524px;
+    display: flex;
+    margin-left: 3rem;
+    /* margin-top: 1.75rem; */
+    width: 100%;
+}

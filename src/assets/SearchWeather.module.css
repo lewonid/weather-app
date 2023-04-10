@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Monsterrat-Regular';
+    src: url('../assets/fonts/Montserrat-Regular.ttf');
+}
+@font-face {
+    font-family: 'Monsterrat-Bold';
+    src: url('../assets/fonts/Montserrat-Bold.ttf');
+}
+.SearchWeather{
+    display: flex;
+    padding-bottom: 2rem;
+    border-bottom: rgb(248, 248, 248) 1px solid;
+}
+.Date h1{
+    font-family: 'Monsterrat-Bold';
+    color: #1B262C;
+    margin-bottom: 0.5rem;
+}
+.Date p{
+    font-family: 'Monsterrat-Regular';
+    color: gray;
+}
+.form{
+    align-self: center;
+    margin-left: 6rem;
+}
+.form input{
+    border: none;
+    outline: none;
+    background-color: rgb(248, 248, 248);
+    min-width: 320px;
+    height: 50px;
+    font-family: 'Monsterrat-Regular';
+    padding-left: 2rem;
+    font-size: 1rem;
+}

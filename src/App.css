@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.App{display: flex;}
+p{
+    font-family: 'Monsterrat-Regular';
+}
+h1{
+    color: #1B262C;
+}
+h2{
+    color: #1B262C;
+}
