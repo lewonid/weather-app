@@ -23,6 +23,7 @@
 .form{
     align-self: center;
     margin-left: 6rem;
+    width: 100%;
 }
 .form input{
     border: none;
@@ -33,4 +34,13 @@
     font-family: 'Monsterrat-Regular';
     padding-left: 2rem;
     font-size: 1rem;
+}
+
+@media screen and (max-width: 1900px) {
+    .form input{min-width: 240px;} 
+}
+@media screen and (max-width: 1200px) {
+    .SearchWeather{flex-direction: column;}
+    .form{align-self:flex-start; margin-left: 0; margin-top: 1rem;}
+    /* .form input{width: 50%;} */
 }

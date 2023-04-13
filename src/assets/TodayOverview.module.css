@@ -34,3 +34,6 @@
     display: flex;
     flex-wrap: wrap;
 }
+@media screen and (max-width:460px) {
+    .Desktop{display: none;}
+}

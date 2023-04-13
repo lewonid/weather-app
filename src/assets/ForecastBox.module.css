@@ -12,7 +12,7 @@
     align-items: center;
     padding: 0.75rem 1rem;
     margin: 0.5rem;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 .Details{
     display:flex;
@@ -34,9 +34,20 @@
     font-size: 1.5rem;
     color: rgb(95, 129, 145);
 }
-.ForecastBox p:last-child{
+.Date{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.Date p:last-child{
     margin-right: 1rem;
 }
-.ForecastBox p{
+.Date p{
     font-size: 1.35rem;
+}
+
+@media screen and (max-width:760px){
+    .ForecastBox{flex-wrap: wrap;}
+    .Date{flex-direction: column; margin-left: 5.5rem; color: gray;}
+    .Date p{font-size: 1rem;}
 }

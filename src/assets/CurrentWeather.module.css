@@ -14,13 +14,13 @@
     background-image: url('../assets/img/rainy_weather_dark.png');
     margin-left: auto;
     color: white;
-    padding-top: 1.75rem;
 }
 .Header{
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 0 7rem;
+    margin-top: 2rem;
 }
 .Location h3{
     font-family: 'Monsterrat-Regular';
@@ -45,9 +45,25 @@
 }
 .WeatherData h1{
     font-family: 'Monsterrat-Regular';
-    font-size: 3.5rem;
+    font-size: 3rem;
 }
 .WeatherData p{
     font-family: 'Monsterrat-Regular';
     font-size: 1.225rem;
+}
+
+@media screen and (max-width: 1900px) {
+    .Header{margin: 0 3rem; margin-top: 2rem;}
+    .MainWeather{margin: 4.5rem 3rem;}
+}
+@media screen and (max-width: 1200px) {
+    .CurrentWeather{margin: 0; max-width: 100%; min-width: 200px;}
+    .MainWeather{display: flex; flex-direction: column;}
+    .Header, .WeatherData{justify-content: space-around;}
+    .Icon{align-self: center; margin-bottom: 2rem;}
+}
+@media screen and (max-width: 600px) {
+    .Header, .WeatherData{justify-content: space-between;}
+    .Header{margin: 0 1.5rem; margin-top: 2rem;}
+    .MainWeather{margin: 4.5rem 1.5rem;}
 }

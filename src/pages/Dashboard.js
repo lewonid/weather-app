@@ -10,29 +10,35 @@ import ForecastWeather from '../components/ForecastWeather';
 
 function Dashboard() {
 
-  // const [currentWeather, setCurrentWeather] = useState([])
+  const [currentWeatherData, setCurrentWeatherData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect(() => {
-  //   const fetchCurrentWeather = async () => {
-  //     const currentWeather = await fetchData('https://weatherapi-com.p.rapidapi.com/current.json?q=53.1%2C-0.13', weatherOptions);
+  useEffect(() => {
+    const defaultWeather = async () => {
+      const currentWeather = await fetchData('https://weatherapi-com.p.rapidapi.com/current.json?q=Lugoj', weatherOptions);
+      setCurrentWeatherData(currentWeather);
+      setIsLoading(false);
+    }
+    defaultWeather();
+  }, [])
+  // DEFAULT WEATHER FETCHING DATA FOR
 
-  //     setCurrentWeather(currentWeather);
-  //   }
 
-  //   fetchCurrentWeather();
-  // }, []);
+  // handleing data from SearchWeather component.
+  const handleData = (weatherData) => {
+    setCurrentWeatherData(weatherData)
+  }
 
-  // console.log(currentWeather);
+  // console.log(currentWeatherData);
 
   return (
     <div className={styles.Dashboard}>
-      <div className="Overview" style={{ maxWidth: '820px', marginTop: '1.75rem', marginRight: '3rem'}}>
-        <SearchWeather />
-        <TodayOverview />
-        <ForecastWeather />
+      <div className={styles.Overview}>
+        <SearchWeather searchData={handleData}/>
+        <TodayOverview currentWeatherData={currentWeatherData} isLoading={isLoading}/>
+        <ForecastWeather currentWeatherData={currentWeatherData} isLoading={isLoading}/>
       </div>
-      <CurrentWeather />
-      {/* <CurrentWeather currentWeather={currentWeather} /> */}
+      <CurrentWeather currentWeatherData={currentWeatherData} isLoading={isLoading}/>
     </div>
   );
 }

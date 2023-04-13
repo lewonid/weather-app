@@ -5,3 +5,20 @@
     /* margin-top: 1.75rem; */
     width: 100%;
 }
+.Overview{
+    max-width: 820px;
+    margin-top: 1.75rem;
+    margin-bottom: 1.75rem;
+    margin-right: 3rem;
+}
+
+@media screen and (min-width: 1940px){
+    .Dashboard{margin: 0 auto;}
+}
+@media screen and (max-width: 1200px){
+    .Dashboard{flex-direction: column-reverse; margin-left: 0;}
+    .Overview{margin-left: 3rem;}
+}
+@media screen and (max-width: 600px){
+    .Overview{margin-left: 1rem; margin-right: 1rem;}
+}

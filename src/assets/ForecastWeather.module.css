@@ -30,3 +30,6 @@
 .header svg{
     margin-bottom: -2px;
 }
+@media screen and (max-width:460px) {
+    .Desktop{display: none;}
+}
