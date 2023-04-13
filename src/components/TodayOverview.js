@@ -3,6 +3,8 @@ import React from 'react'
 import styles from '../assets/TodayOverview.module.css';
 
 import { HiArrowTopRightOnSquare } from 'react-icons/hi2'
+import { ClipLoader } from 'react-spinners'
+
 import WeatherBox from './WeatherBox';
 
 const TodayOverview = ({ currentWeatherData, isLoading }) => {
@@ -24,6 +26,15 @@ const TodayOverview = ({ currentWeatherData, isLoading }) => {
     var precipitation = currentWeatherData.current.precip_mm + 'mm';
     var pressure = currentWeatherData.current.pressure_mb + 'mb';
     var uvIndex = currentWeatherData.current.uv;
+  }
+
+  if(isLoading === true)
+  {
+    return(
+      <div style={{display:'flex', justifyContent:'center', alignItems:'center', width:'50%'}}>
+          <ClipLoader color='#2f82fe' />
+      </div>
+    )
   }
 
   return (
