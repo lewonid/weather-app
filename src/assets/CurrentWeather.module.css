@@ -33,9 +33,10 @@
 }
 .MainWeather{
     margin: 4.5rem 7rem;
+    margin-bottom: 0;
 }
 .Icon{
-    font-size: 3rem;
+    /* font-size: 3rem; */
     margin-bottom: 0.5rem;
 }
 .WeatherData{
@@ -51,6 +52,24 @@
     font-family: 'Monsterrat-Regular';
     font-size: 1.225rem;
 }
+.MoreData{
+    margin-top: 4rem;
+    display: flex;
+    justify-content: space-between; 
+}
+.MoreData p{
+    margin-bottom: 0.5rem;
+}
+.line{
+    margin-top: 1.5rem;
+    width: 100%;
+    height: 1px;
+    background-color: gray;
+}
+.Title{
+    margin-top: 1.5rem;
+    font-size: 1.225rem;
+}
 
 @media screen and (max-width: 1900px) {
     .Header{margin: 0 3rem; margin-top: 2rem;}
@@ -59,11 +78,11 @@
 @media screen and (max-width: 1200px) {
     .CurrentWeather{margin: 0; max-width: 100%; min-width: 200px;}
     .MainWeather{display: flex; flex-direction: column;}
-    .Header, .WeatherData{justify-content: space-around;}
+    .Header, .WeatherData, .MoreData{justify-content: space-around;}
     .Icon{align-self: center; margin-bottom: 2rem;}
 }
 @media screen and (max-width: 600px) {
-    .Header, .WeatherData{justify-content: space-between;}
+    .Header, .WeatherData, .MoreData{justify-content: space-between;}
     .Header{margin: 0 1.5rem; margin-top: 2rem;}
     .MainWeather{margin: 4.5rem 1.5rem;}
 }

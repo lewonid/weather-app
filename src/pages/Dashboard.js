@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 
 import styles from '../assets/Dashboard.module.css';
 
+import { getIP } from '../utils/fetchIP';
+
 import SearchWeather from '../components/SearchWeather';
 import TodayOverview from '../components/TodayOverview';
 import ForecastWeather from '../components/ForecastWeather';
@@ -11,34 +13,50 @@ import ForecastWeather from '../components/ForecastWeather';
 function Dashboard() {
 
   const [currentWeatherData, setCurrentWeatherData] = useState([]);
+  const [forecastData, setForecastData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [ip, setIp] = useState('');
+
+  useEffect(() => {
+    const fetchIP = async () =>{
+      const ip = await getIP();
+      setIp(ip);
+    }
+    fetchIP();
+  }, []) // getting ip adress
+  
+  // console.log(ip.ip);
 
   useEffect(() => {
     const defaultWeather = async () => {
-      const currentWeather = await fetchData('https://weatherapi-com.p.rapidapi.com/current.json?q=Lugoj', weatherOptions);
-      setCurrentWeatherData(currentWeather);
-      setIsLoading(false);
+      if(ip){
+        const currentWeather = await fetchData(`https://weatherapi-com.p.rapidapi.com/current.json?q=${ip.ip}`, weatherOptions);
+        setCurrentWeatherData(currentWeather);
+        setIsLoading(false);
+      }
     }
     defaultWeather();
-  }, [])
-  // DEFAULT WEATHER FETCHING DATA FOR
+  }, [ip])
+  // DEFAULT WEATHER FETCHING DATA AFTER IP LOCATION
 
 
   // handleing data from SearchWeather component.
-  const handleData = (weatherData) => {
-    setCurrentWeatherData(weatherData)
+  const handleData = (weatherData) => { 
+      setCurrentWeatherData(weatherData);
   }
 
-  // console.log(currentWeatherData);
+  const getForecast = (forecastData) =>{
+    setForecastData(forecastData);
+  } 
 
   return (
     <div className={styles.Dashboard}>
       <div className={styles.Overview}>
         <SearchWeather searchData={handleData}/>
         <TodayOverview currentWeatherData={currentWeatherData} isLoading={isLoading}/>
-        <ForecastWeather currentWeatherData={currentWeatherData} isLoading={isLoading}/>
+        <ForecastWeather currentWeatherData={currentWeatherData} isLoading={isLoading} getData={getForecast}/>
       </div>
-      <CurrentWeather currentWeatherData={currentWeatherData} isLoading={isLoading}/>
+      <CurrentWeather currentWeatherData={currentWeatherData} isLoading={isLoading} forecastData={forecastData}/>
     </div>
   );
 }

@@ -44,6 +44,7 @@
 }
 .Date p{
     font-size: 1.35rem;
+    text-transform: capitalize;
 }
 
 @media screen and (max-width:760px){

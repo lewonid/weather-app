@@ -15,15 +15,17 @@
     font-family: 'Monsterrat-Bold';
     color: #1B262C;
     margin-bottom: 0.5rem;
+    text-transform: capitalize;
 }
 .Date p{
     font-family: 'Monsterrat-Regular';
     color: gray;
+    text-transform: capitalize;
 }
 .form{
     align-self: center;
     margin-left: 6rem;
-    width: 100%;
+    /* width: 100%; */
 }
 .form input{
     border: none;
@@ -36,6 +38,11 @@
     font-size: 1rem;
 }
 
+.AutoCompleteContainer{
+    position: absolute;
+    width: 270px;
+}
+
 @media screen and (max-width: 1900px) {
     .form input{min-width: 240px;} 
 }
@@ -43,4 +50,8 @@
     .SearchWeather{flex-direction: column;}
     .form{align-self:flex-start; margin-left: 0; margin-top: 1rem;}
     /* .form input{width: 50%;} */
+}
+@media screen and (max-width: 600px){
+    .form{width: 100%;}
+    .form input{width: 90%;}
 }

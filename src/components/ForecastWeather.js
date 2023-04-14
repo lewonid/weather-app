@@ -8,7 +8,7 @@ import { HiArrowTopRightOnSquare } from 'react-icons/hi2'
 import ForecastBox from './ForecastBox';
 import { fetchData, weatherOptions } from '../utils/fetchData';
 
-const ForecastWeather = ({ currentWeatherData, isLoading }) => {
+const ForecastWeather = ({ currentWeatherData, isLoading, getData }) => {
 
   const [forecastData, setForecastData] = useState();
 
@@ -20,10 +20,11 @@ const ForecastWeather = ({ currentWeatherData, isLoading }) => {
     const fetchForecastData = async() => {
       const forecastData = await fetchData(`https://weatherapi-com.p.rapidapi.com/forecast.json?q=${forecastLocation}&days=3`, weatherOptions)
       setForecastData(forecastData);
+      getData(forecastData);
     }
     if(isLoading === false){
       fetchForecastData();
-    }
+    } // eslint-disable-next-line
   }, [isLoading, forecastLocation])
 
   if(forecastData){

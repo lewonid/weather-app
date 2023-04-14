@@ -44,3 +44,8 @@
     .Desktop{display: none;}
     .Menu{width: auto; padding-left: 0.5rem; padding-right: 0.5rem;}
 }
+@media screen and (max-width:500px) {
+    .Menu{
+        display: none;
+    }
+}

@@ -1,0 +1,10 @@
+.AutoComplete{
+    background-color: rgb(236, 236, 236);
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #2f82fe;
+    text-align: center;
+    cursor: pointer;
+}

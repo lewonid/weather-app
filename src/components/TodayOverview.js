@@ -9,31 +9,18 @@ import WeatherBox from './WeatherBox';
 
 const TodayOverview = ({ currentWeatherData, isLoading }) => {
 
-  // console.log(currentWeatherData);
-  // console.log(isLoading)
-
-  // if(currentWeatherData != 0)
-  // {console.log(currentWeatherData.location.name)}
-  // else{console.log('shit')}
-  // if(isLoading === false){
-  //   console.log(currentWeatherData.location.name);
-  // }
-
-  // if(currentWeatherData != 0)
-  if(isLoading === false)
-  {
+  if(isLoading === false){
     var windSpeed = currentWeatherData.current.wind_kph + ' km/h';
     var precipitation = currentWeatherData.current.precip_mm + 'mm';
     var pressure = currentWeatherData.current.pressure_mb + 'mb';
     var uvIndex = currentWeatherData.current.uv;
   }
 
-  if(isLoading === true)
-  {
+  if(currentWeatherData === undefined){
     return(
       <div style={{display:'flex', justifyContent:'center', alignItems:'center', width:'50%'}}>
-          <ClipLoader color='#2f82fe' />
-      </div>
+            <ClipLoader color='#2f82fe' />
+        </div>
     )
   }
 

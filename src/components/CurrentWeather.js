@@ -4,10 +4,12 @@ import { IoRainySharp } from 'react-icons/io5'
 import { ClipLoader } from 'react-spinners'
 
 import styles from '../assets/CurrentWeather.module.css'
+import HourBox from './HourBox'
+import AstroBox from './AstroBox'
 
-const CurrentWeather = ({ currentWeatherData, isLoading }) => {
+const CurrentWeather = ({ currentWeatherData, isLoading, forecastData }) => {
     // console.log(currentWeatherData)
-
+    
     if(isLoading === false){
         var name = currentWeatherData.location.name;
         var region = currentWeatherData.location.region;
@@ -34,6 +36,17 @@ const CurrentWeather = ({ currentWeatherData, isLoading }) => {
         var localTime = localtime();
     }
     
+    if(forecastData.current){
+        var feelsLike = forecastData.current.feelslike_c;
+        var chanceOfRain = forecastData.forecast.forecastday[0].day.daily_chance_of_rain;
+        var maxTemp = forecastData.forecast.forecastday[0].day.maxtemp_c;
+        var minTemp = forecastData.forecast.forecastday[0].day.mintemp_c;
+        var iconUrl = forecastData.current.condition.icon;
+    }
+
+    // here to continue
+    // to extract forecast data by hours to get chance_of_rain
+
     // Loader
     if(isLoading === true) {
         return(
@@ -53,12 +66,36 @@ const CurrentWeather = ({ currentWeatherData, isLoading }) => {
                 <p>{localTime}</p>
             </div>
             <div className={styles.MainWeather}>
-                <IoRainySharp className={styles.Icon}/>
+                {/* <IoRainySharp className={styles.Icon}/> */}
+                <img className={styles.Icon} src={iconUrl} alt={condition}/>
                 <div className={styles.WeatherData}>
                     <h1 style={{color: 'white'}}>{temp}° C</h1>
                     <div style={{textAlign: 'right'}}>
                         <p>{condition}</p>
                     </div>
+                </div>
+                <div className={styles.MoreData}>
+                    <div>
+                        <p>Feels like: {feelsLike}° C</p>
+                        <p>Chance of rain: {chanceOfRain} %</p>
+                    </div>
+                    <div>
+                        <p>Max. temp.: {maxTemp}° C</p>
+                        <p>Min. temp.: {minTemp}° C</p>
+                    </div>
+                </div>
+                <div className={styles.line}></div>
+                <div className={styles.WeatherByHours}>
+                    <p className={styles.Title}>Chance of rain</p>
+                    <HourBox time={{}} percentage={{}} />
+                    <HourBox />
+                    <HourBox />
+                    <HourBox />
+                </div>
+                <div className={styles.Astro}>
+                    <p className={styles.Title}>Sunrise & Sunset</p>
+                    <AstroBox />
+                    <AstroBox />
                 </div>
             </div>
         </div>
