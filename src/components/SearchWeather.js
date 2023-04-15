@@ -24,6 +24,7 @@ const SearchWeather = ({ searchData }) => {
           }else{
             searchData(currentWeather); // SENDS DATA TO DASHBOARD BY typing and pressing ENTER
             setLocationNotFound(false);
+            window.scrollTo(0,0);
           }
         }
     }
@@ -45,6 +46,7 @@ const SearchWeather = ({ searchData }) => {
         setSearch('');
         searchData(currentWeather); // SENDS DATA TO DASHBOARD BY typing and clicking a result from DROPDOWN
         setLocationNotFound(false);
+        window.scrollTo(0,0);
       }
       handleAutoSearch();
     }

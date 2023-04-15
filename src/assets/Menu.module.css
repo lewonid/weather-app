@@ -39,7 +39,7 @@
 .Phone{
     display: none;
 }
-@media screen and (max-width:1360px) {
+@media screen and (max-width:1460px) {
     .Phone{display: block;}
     .Desktop{display: none;}
     .Menu{width: auto; padding-left: 0.5rem; padding-right: 0.5rem;}

@@ -1,18 +1,58 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
 
-import { FiSun } from 'react-icons/fi'
+import { AmPmTo24Hour } from '../utils/amPmTo24Hour'
 
 import styles from '../assets/AstroBox.module.css'
 
-const AstroBox = () => {
+const AstroBox = ({ icon, type, astroTime, localTime }) => {
+
+  const [timeToSun, setTimeToSun] = useState([]);
+
+  useEffect(() => {
+    const astroHours = AmPmTo24Hour(astroTime).split(':')[0];
+    const localHours = AmPmTo24Hour(localTime).split(":")[0];
+  
+    if (type === "Sunrise") {
+      // Calculate time until next daysss sunrise
+      const timeDifference = ((parseInt(astroHours) - parseInt(localHours)) + 24) % 24;
+      if (timeDifference === 0) {
+        setTimeToSun('now');
+      } else if (timeDifference > 0) {
+        setTimeToSun(`in ${timeDifference} hours`);
+      } else {
+        setTimeToSun(`${Math.abs(timeDifference)} hours ago`);
+      }
+    } else if (type === "Sunset") {
+      // Calculate time until next days sunset
+      const timeDifference = ((parseInt(localHours) - parseInt(astroHours)) + 24) % 24;
+      if (timeDifference === 0) {
+        setTimeToSun('now');
+      } else if (timeDifference > 0) {
+        setTimeToSun(`in ${timeDifference} hours`);
+      } else {
+        setTimeToSun(`${Math.abs(timeDifference)} hours ago`);
+      }
+    }
+  }, [astroTime, localTime, type]);
+  
+
+  // console.log(timeToSun)
+
   return (
     <div className={styles.AstroBox}>
-        <FiSun />
+        {icon}
         <div className={styles.Details}>
-            <p>Sunrise</p>
-            <p>4:20 AM</p>
+            <p>{type}</p>
+            <p>{astroTime}</p>
         </div>
-        <p>4 hours ago</p>
+        {
+          type === 'Sunrise' && <p>{timeToSun}</p>
+        }
+        {
+          type === 'Sunset' && <p>{timeToSun}</p>
+        }
+        
     </div>
   )
 }

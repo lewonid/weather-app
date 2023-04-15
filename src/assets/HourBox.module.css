@@ -4,18 +4,10 @@
     justify-content: space-between;
     margin-top: 1rem;
 }
-.ProgressBar{
-    background-color: gray;
-    border-radius: 50px;
-    width: 70%;
-    height: 16px;
-}
-.ProgressBar div{
-    background-color: #2f82fe;
-    border-radius: 50px;
-    width: 70%;
-    height: 16px;
-}
 .HourBox p{
     font-size: 1rem;
+}
+.HourBox img{
+    max-width: 50px;
+    max-height: 40px;
 }

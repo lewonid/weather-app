@@ -1,16 +1,22 @@
 import React from 'react'
-
+import { useEffect, useState } from 'react'
 import styles from '../assets/HourBox.module.css'
 
 
-const HourBox = () => {
+const HourBox = ({ time, temp, icon }) => {
+
+  const [hour, setHour] = useState('');
+
+  useEffect(() => {
+    const date = new Date(time);
+    setHour(date.getHours());
+  }, [time])
+
   return (
     <div className={styles.HourBox}>
-        <p>7 PM</p>
-        <div className={styles.ProgressBar}>
-            <div></div>
-        </div>
-        <p> 44 %</p>
+        <p>{hour}</p>
+        <img src={icon} alt='condition'/>
+        <p>{temp}° C</p>
     </div>
   )
 }
