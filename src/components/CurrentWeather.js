@@ -3,14 +3,16 @@ import { useState, useEffect } from 'react'
 
 import { ClipLoader } from 'react-spinners'
 import { FiSun } from 'react-icons/fi'
-import { FiSunset } from 'react-icons/fi'
 
 import styles from '../assets/CurrentWeather.module.css'
 import HourBox from './HourBox'
 import AstroBox from './AstroBox'
+import AlertBox from './AlertBox'
+
+import clearBg from '../assets/img/clear.jpg'
 
 const CurrentWeather = ({ currentWeatherData, isLoading, forecastData }) => {
-    // console.log(currentWeatherData)
+    // console.log(forecastData)
 
     const [localTime, setLocalTime] = useState([]);
     const [localHour, setLocalHour] = useState([]);
@@ -42,7 +44,6 @@ const CurrentWeather = ({ currentWeatherData, isLoading, forecastData }) => {
         var feelsLike = forecastData.current.feelslike_c;
         var chanceOfRain = forecastData.forecast.forecastday[0].day.daily_chance_of_rain;
         var maxTemp = forecastData.forecast.forecastday[0].day.maxtemp_c;
-        var minTemp = forecastData.forecast.forecastday[0].day.mintemp_c;
         var iconUrl = forecastData.current.condition.icon;
     }
     if(forecastData.length === 0){
@@ -50,10 +51,41 @@ const CurrentWeather = ({ currentWeatherData, isLoading, forecastData }) => {
         
     }else{
         var dataByHours = forecastData.forecast.forecastday[0].hour;
+        var usEpaIndex = forecastData.current.air_quality['us-epa-index'];
+
+        if(forecastData.alerts.alert.length > 0){ // checking if there are alerts
+            var alertsData = forecastData.alerts.alert;
+            console.log(alertsData);
+        }else{ // if not, empty array.
+            var alertsData = [];
+        }
+    }
+    
+    let airQualityType;
+    // Check the value of usEpaIndex and assign the corresponding type
+    if (usEpaIndex === 1) {
+        airQualityType = 'Good';
+    } else if (usEpaIndex === 2) {
+        airQualityType = 'Moderate';
+    } else if (usEpaIndex === 3) {
+        airQualityType = 'Unhealthy for Sensitive Groups';
+    } else if (usEpaIndex === 4) {
+        airQualityType = 'Unhealthy';
+    } else if (usEpaIndex === 5) {
+        airQualityType = 'Very Unhealthy';
+    } else if (usEpaIndex === 6) {
+        airQualityType = 'Hazardous';
+    } else {
+        airQualityType = 'Unknown';
     }
 
+    // const background = "url('assets/img/rainy_weather_dark.png')";
+    // if (condition === 'Clear'){
+        
+    // } CONTIUNUE
+
     // Loader
-    if((isLoading === true) || (localHour.length === 0) || (forecastData.length === 0)) {
+    if((isLoading === true) || (localHour.length === 0) || (forecastData.length === 0) || (alertsData === undefined)) {
         return(
             <div style={{display:'flex', justifyContent:'center', alignItems:'center', width:'50%'}}>
                 <ClipLoader color='#2f82fe' />
@@ -71,6 +103,16 @@ const CurrentWeather = ({ currentWeatherData, isLoading, forecastData }) => {
                 {/* <p>08:54 AM</p> */}
                 <p>{localTime}</p>
             </div>
+            {
+                alertsData.map(alert => (
+                    <AlertBox 
+                    key={alert.headline}
+                    headline={alert.headline}
+                    severity={alert.severity}
+                    areas={alert.areas}
+                    />
+                ))
+            }
             <div className={styles.MainWeather}>
                 {/* <IoRainySharp className={styles.Icon}/> */}
                 <img className={styles.Icon} src={iconUrl} alt={condition}/>
@@ -87,15 +129,17 @@ const CurrentWeather = ({ currentWeatherData, isLoading, forecastData }) => {
                     </div>
                     <div>
                         <p>Max. temp.: {maxTemp}° C</p>
-                        <p>Min. temp.: {minTemp}° C</p>
+                        {/* <p>Min. temp.: {minTemp}° C</p> */}
+                        <p>Air quality: {airQualityType}</p>
                     </div>
                 </div>
                 <div className={styles.line}></div>
                 <div className={styles.WeatherByHours}>
                     <p className={styles.Title}>Hourly Weather</p>
                     {/* <HourBox time={{}} icon={{}} temperature={{}}/> */}
+                    <div>
                     { 
-                        dataByHours.slice(localHour + 1, localHour + 5).map(
+                        dataByHours.slice(localHour, localHour + 5).map(
                             hour => (
                                 <HourBox
                                  time={hour.time}
@@ -106,11 +150,11 @@ const CurrentWeather = ({ currentWeatherData, isLoading, forecastData }) => {
                             )
                         ) 
                     }
+                    </div>
                 </div>
                 <div className={styles.Astro}>
-                    <p className={styles.Title}>Sunrise & Sunset</p>
+                    <p className={styles.Title}>Sunrise</p>
                     <AstroBox icon={<FiSun />} type={'Sunrise'} astroTime={forecastData.forecast.forecastday[0].astro.sunrise} localTime={localTime} localHour={localHour}/>
-                    <AstroBox icon={<FiSunset />} type={'Sunset'} astroTime={forecastData.forecast.forecastday[0].astro.sunset} localTime={localTime} localHour={localHour}/>
                 </div>
             </div>
         </div>

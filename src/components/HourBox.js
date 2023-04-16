@@ -9,9 +9,15 @@ const HourBox = ({ time, temp, icon }) => {
 
   useEffect(() => {
     const date = new Date(time);
-    setHour(date.getHours());
-  }, [time])
+    const hour = date.getHours().toString();
 
+    if(hour.length === 1){
+      setHour('0' + hour);
+    }else{
+      setHour(hour);
+    }
+  }, [time])
+  
   return (
     <div className={styles.HourBox}>
         <p>{hour}</p>

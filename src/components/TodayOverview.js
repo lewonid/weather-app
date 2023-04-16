@@ -3,6 +3,11 @@ import React from 'react'
 import styles from '../assets/TodayOverview.module.css';
 
 import { HiArrowTopRightOnSquare } from 'react-icons/hi2'
+import { RiWindyLine } from 'react-icons/ri'
+import { SiRainmeter } from 'react-icons/si'
+import { AiOutlineCompress } from 'react-icons/ai'
+import { IoSunny } from 'react-icons/io5'
+
 import { ClipLoader } from 'react-spinners'
 
 import WeatherBox from './WeatherBox';
@@ -31,10 +36,10 @@ const TodayOverview = ({ currentWeatherData, isLoading }) => {
           <p><span className={styles.Desktop}>More detail</span> <span><HiArrowTopRightOnSquare /></span></p>
         </div>
         <div className={styles.WeatherDetails}>
-          <WeatherBox condition={'Wind Speed'} value={ windSpeed }/>
-          <WeatherBox condition={'Precipitation'} value={ precipitation }/>
-          <WeatherBox condition={'Pressure'} value={ pressure }/>
-          <WeatherBox condition={'UV Index'} value={ uvIndex }/>
+          <WeatherBox condition={'Wind Speed'} value={ windSpeed } icon={<RiWindyLine />}/>
+          <WeatherBox condition={'Precipitation'} value={ precipitation } icon={<SiRainmeter />}/>
+          <WeatherBox condition={'Pressure'} value={ pressure } icon={<AiOutlineCompress />}/>
+          <WeatherBox condition={'UV Index'} value={ uvIndex } icon={<IoSunny />}/>
         </div>
       </div>
   )

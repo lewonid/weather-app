@@ -18,7 +18,7 @@ const ForecastWeather = ({ currentWeatherData, isLoading, getData }) => {
 
   useEffect(() => {
     const fetchForecastData = async() => {
-      const forecastData = await fetchData(`https://weatherapi-com.p.rapidapi.com/forecast.json?q=${forecastLocation}&days=3`, weatherOptions)
+      const forecastData = await fetchData(`https://weatherapi-com.p.rapidapi.com/forecast.json?q=${forecastLocation}&days=3&alerts=yes&aqi=yes`, weatherOptions)
       setForecastData(forecastData);
       getData(forecastData);
     }
@@ -49,6 +49,7 @@ const ForecastWeather = ({ currentWeatherData, isLoading, getData }) => {
         {forecastDays.map(forecastDays => (
           <ForecastBox
             key={forecastDays.date}
+            icon={forecastDays.day.condition.icon}
             maxTemp={forecastDays.day.maxtemp_c} 
             minTemp={forecastDays.day.mintemp_c}
             date={forecastDays.date}
