@@ -7,6 +7,7 @@ import { HiArrowTopRightOnSquare } from 'react-icons/hi2'
 
 import ForecastBox from './ForecastBox';
 import { fetchData, weatherOptions } from '../utils/fetchData';
+import { Link } from 'react-router-dom';
 
 const ForecastWeather = ({ currentWeatherData, isLoading, getData }) => {
 
@@ -19,8 +20,14 @@ const ForecastWeather = ({ currentWeatherData, isLoading, getData }) => {
   useEffect(() => {
     const fetchForecastData = async() => {
       const forecastData = await fetchData(`https://weatherapi-com.p.rapidapi.com/forecast.json?q=${forecastLocation}&days=3&alerts=yes&aqi=yes`, weatherOptions)
-      setForecastData(forecastData);
-      getData(forecastData);
+      if (forecastData.error){
+        console.log('error');
+      }else{
+        setForecastData(forecastData);
+        getData(forecastData);
+      }
+      // setForecastData(forecastData);
+      // getData(forecastData);
     }
     if(isLoading === false){
       fetchForecastData();
@@ -44,7 +51,11 @@ const ForecastWeather = ({ currentWeatherData, isLoading, getData }) => {
     <div className={styles.ForecastWeather}>
       <div className={styles.header}>
           <h2>3 days Forecast</h2>
-          <p><span className={styles.Desktop}>More detail </span><span><HiArrowTopRightOnSquare /></span></p>
+          <p>
+            <Link to='/forecast' style={{textDecoration: 'none', color:'#2f82fe'}}>
+              <span className={styles.Desktop}>More detail </span><span><HiArrowTopRightOnSquare /></span>
+              </Link>
+            </p>
         </div>
         {forecastDays.map(forecastDays => (
           <ForecastBox

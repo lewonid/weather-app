@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 
+import moment from 'moment/moment'
+
 import { ClipLoader } from 'react-spinners'
 import { FiSun } from 'react-icons/fi'
 
@@ -9,7 +11,14 @@ import HourBox from './HourBox'
 import AstroBox from './AstroBox'
 import AlertBox from './AlertBox'
 
-import clearBg from '../assets/img/clear.jpg'
+import sunnyBg from '../assets/img/sunny.webp'
+import clear_nightBg from '../assets/img/clear_night.webp'
+import partlyCloudyBg from '../assets/img/partly_cloudy.webp'
+import cloudyBg from '../assets/img/cloudy.webp'
+import mistBg from '../assets/img/mist.webp'
+import rainBg from '../assets/img/rainy_weather_dark.webp'
+import snowBg from '../assets/img/snow.webp'
+
 
 const CurrentWeather = ({ currentWeatherData, isLoading, forecastData }) => {
     // console.log(forecastData)
@@ -24,20 +33,31 @@ const CurrentWeather = ({ currentWeatherData, isLoading, forecastData }) => {
         var temp = currentWeatherData.current.temp_c;
         var condition = currentWeatherData.current.condition.text;
     }
-
+// formatting time
+    // useEffect(() => {
+    //     if(isLoading === false){
+    //         const dateTime = new Date(currentWeatherData.location.localtime);
+    //         console.log(currentWeatherData.location.localtime);
+    //         const hours = dateTime.getHours();
+    //         const minutes = dateTime.getMinutes();
+    //         const formattedHours = hours.toString().padStart(2, '0');
+    //         const formattedMinutes = minutes.toString().padStart(2, '0');
+    //         const timeString = `${formattedHours}:${formattedMinutes}`;
+    //         setLocalHour(parseInt(formattedHours));
+    //         setLocalTime(timeString);
+    // }
+    // }, [currentWeatherData, isLoading])
     useEffect(() => {
-        if(isLoading === false){
-            const dateTime = new Date(currentWeatherData.location.localtime);
-            const hours = dateTime.getHours();
-            const minutes = dateTime.getMinutes();
-            const formattedHours = hours.toString().padStart(2, '0');
-            const formattedMinutes = minutes.toString().padStart(2, '0');
-            const timeString = `${formattedHours}:${formattedMinutes}`;
-
-            setLocalHour(parseInt(formattedHours));
-            setLocalTime(timeString);
-    }
-    }, [currentWeatherData, isLoading])
+        if (isLoading === false && currentWeatherData && currentWeatherData.location && currentWeatherData.location.localtime) {
+          const dateTime = moment(currentWeatherData.location.localtime);
+          console.log(currentWeatherData.location.localtime);
+          const hours = dateTime.format('HH');
+          const minutes = dateTime.format('mm');
+          const timeString = `${hours}:${minutes}`;
+          setLocalHour(parseInt(hours));
+          setLocalTime(timeString);
+        }
+      }, [currentWeatherData, isLoading]);
     
 
     if(forecastData.current){
@@ -57,7 +77,7 @@ const CurrentWeather = ({ currentWeatherData, isLoading, forecastData }) => {
             var alertsData = forecastData.alerts.alert;
             console.log(alertsData);
         }else{ // if not, empty array.
-            var alertsData = [];
+            alertsData = [];
         }
     }
     
@@ -79,10 +99,30 @@ const CurrentWeather = ({ currentWeatherData, isLoading, forecastData }) => {
         airQualityType = 'Unknown';
     }
 
-    // const background = "url('assets/img/rainy_weather_dark.png')";
-    // if (condition === 'Clear'){
-        
-    // } CONTIUNUE
+    // background image cases
+    if (isLoading === false){
+        var backgroundImage = sunnyBg;
+
+        if(currentWeatherData.current.condition.text === 'Partly cloudy'){
+            backgroundImage = partlyCloudyBg;
+        }else if(currentWeatherData.current.condition.text === 'Clear'){
+            backgroundImage = clear_nightBg;
+        }else if(currentWeatherData.current.condition.text === 'Cloudy'){
+            backgroundImage = cloudyBg;
+        }else if(currentWeatherData.current.condition.text === 'Overcast'){
+            backgroundImage = cloudyBg;
+        }else if(currentWeatherData.current.condition.text === 'Mist'){
+            backgroundImage = mistBg;
+        }else if(currentWeatherData.current.condition.text === 'Fog'){
+            backgroundImage = mistBg;
+        }else if(currentWeatherData.current.condition.text.includes('rain')){
+            backgroundImage = rainBg;
+        }else if(currentWeatherData.current.condition.text.includes('drizzle')){
+            backgroundImage = rainBg;
+        }else if(currentWeatherData.current.condition.text.includes('snow')){
+            backgroundImage = snowBg;
+        }
+    }
 
     // Loader
     if((isLoading === true) || (localHour.length === 0) || (forecastData.length === 0) || (alertsData === undefined)) {
@@ -94,7 +134,8 @@ const CurrentWeather = ({ currentWeatherData, isLoading, forecastData }) => {
     }
 
     return (
-        <div className={styles.CurrentWeather}>
+        <div style={{backgroundImage: `url(${backgroundImage})`}} className={styles.CurrentWeather} >
+        {/*  <div className={background}> */}
             <div className={styles.Header}>
                 <div className={styles.Location}>
                     <h3>{name}</h3>

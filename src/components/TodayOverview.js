@@ -16,8 +16,9 @@ const TodayOverview = ({ currentWeatherData, isLoading }) => {
 
   if(isLoading === false){
     var windSpeed = currentWeatherData.current.wind_kph + ' km/h';
-    var precipitation = currentWeatherData.current.precip_mm + 'mm';
-    var pressure = currentWeatherData.current.pressure_mb + 'mb';
+    // var precipitation = currentWeatherData.current.precip_mm + 'mm';
+    var humidity = currentWeatherData.current.humidity + ' %';
+    var pressure = currentWeatherData.current.pressure_mb + ' mb';
     var uvIndex = currentWeatherData.current.uv;
   }
 
@@ -37,7 +38,7 @@ const TodayOverview = ({ currentWeatherData, isLoading }) => {
         </div>
         <div className={styles.WeatherDetails}>
           <WeatherBox condition={'Wind Speed'} value={ windSpeed } icon={<RiWindyLine />}/>
-          <WeatherBox condition={'Precipitation'} value={ precipitation } icon={<SiRainmeter />}/>
+          <WeatherBox condition={'Humidity'} value={ humidity } icon={<SiRainmeter />}/>
           <WeatherBox condition={'Pressure'} value={ pressure } icon={<AiOutlineCompress />}/>
           <WeatherBox condition={'UV Index'} value={ uvIndex } icon={<IoSunny />}/>
         </div>

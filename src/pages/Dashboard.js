@@ -40,11 +40,11 @@ function Dashboard() {
   // DEFAULT WEATHER FETCHING DATA AFTER IP LOCATION
 
 
-  // handleing data from SearchWeather component.
+  // handleing *getting data from SearchWeather component.
   const handleData = (weatherData) => { 
       setCurrentWeatherData(weatherData);
   }
-
+  // getting forecastData from ForecastWeather
   const getForecast = (forecastData) =>{
     setForecastData(forecastData);
   } 

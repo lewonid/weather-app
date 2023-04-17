@@ -1,8 +1,8 @@
 import React from 'react'
 
 // import logo_small from '../assets/img/logo_v1.png'
-import logo from '../assets/img/weatherAPP_logo_v1.png'
-import sm_logo from '../assets/img/small_weatherAPP_logo_v1.png'
+import logo from '../assets/img/small_weatherAPP_logo_v1.webp'
+import sm_logo from '../assets/img/small_weatherAPP_logo_v1.webp'
 import styles from '../assets/Menu.module.css';
 import { RiHomeLine, RiMapPin5Line, RiErrorWarningLine } from 'react-icons/ri';
 
@@ -18,12 +18,12 @@ const Menu = () => {
         <NavLink to='/' className={({ isActive }) => (isActive ? styles.active : styles.inactive)}>
           <span className={styles.Icon}><RiHomeLine /></span><span className={styles.Desktop}>Dashboard</span>
         </NavLink>
-        <NavLink to='/map' className={({ isActive }) => (isActive ? styles.active : styles.inactive)}>
-          <span className={styles.Icon}><RiMapPin5Line /></span><span className={styles.Desktop}>Map</span>
-        </NavLink>
-        <NavLink to='/unknownyet' className={({ isActive }) => (isActive ? styles.active : styles.inactive)}>
+        {/* <NavLink to='/forecast' className={({ isActive }) => (isActive ? styles.active : styles.inactive)}>
+          <span className={styles.Icon}><RiMapPin5Line /></span><span className={styles.Desktop}>Forecast</span>
+        </NavLink> */}
+        {/* <NavLink to='/unknownyet' className={({ isActive }) => (isActive ? styles.active : styles.inactive)}>
           <span className={styles.Icon}><RiErrorWarningLine /></span><span className={styles.Desktop}>Unknown</span>
-        </NavLink>
+        </NavLink> */}
       </div>
     </div>
   )
