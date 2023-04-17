@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 
-import moment from 'moment/moment'
+// import moment from 'moment/moment'
 
 import { ClipLoader } from 'react-spinners'
 import { FiSun } from 'react-icons/fi'
@@ -47,17 +47,28 @@ const CurrentWeather = ({ currentWeatherData, isLoading, forecastData }) => {
     //         setLocalTime(timeString);
     // }
     // }, [currentWeatherData, isLoading])
+    // useEffect(() => {
+    //     if (isLoading === false && currentWeatherData && currentWeatherData.location && currentWeatherData.location.localtime) {
+    //       const dateTime = moment(currentWeatherData.location.localtime);
+    //       console.log(currentWeatherData.location.localtime);
+    //       const hours = dateTime.format('HH');
+    //       const minutes = dateTime.format('mm');
+    //       const timeString = `${hours}:${minutes}`;
+    //       setLocalHour(parseInt(hours));
+    //       setLocalTime(timeString);
+    //     }
+    //   }, [currentWeatherData, isLoading]);
     useEffect(() => {
-        if (isLoading === false && currentWeatherData && currentWeatherData.location && currentWeatherData.location.localtime) {
-          const dateTime = moment(currentWeatherData.location.localtime);
-          console.log(currentWeatherData.location.localtime);
-          const hours = dateTime.format('HH');
-          const minutes = dateTime.format('mm');
-          const timeString = `${hours}:${minutes}`;
-          setLocalHour(parseInt(hours));
-          setLocalTime(timeString);
-        }
-      }, [currentWeatherData, isLoading]);
+    if (isLoading === false && currentWeatherData && currentWeatherData.location && currentWeatherData.location.localtime) {
+        const dateTime = new Date(currentWeatherData.location.localtime);
+        const hours = new Intl.DateTimeFormat('en-US', {hour: 'numeric', hour12: false}).format(dateTime);
+        const minutes = new Intl.DateTimeFormat('en-US', {minute: 'numeric'}).format(dateTime);
+        const timeString = `${hours}:${minutes}`;
+        setLocalHour(parseInt(hours));
+        setLocalTime(timeString);
+    }
+    }, [currentWeatherData, isLoading]);
+      
     
 
     if(forecastData.current){

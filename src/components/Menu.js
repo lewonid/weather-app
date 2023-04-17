@@ -1,7 +1,7 @@
 import React from 'react'
 
 // import logo_small from '../assets/img/logo_v1.png'
-import logo from '../assets/img/small_weatherAPP_logo_v1.webp'
+import logo from '../assets/img/weatherAPP_logo_v1.webp'
 import sm_logo from '../assets/img/small_weatherAPP_logo_v1.webp'
 import styles from '../assets/Menu.module.css';
 import { RiHomeLine, RiMapPin5Line, RiErrorWarningLine } from 'react-icons/ri';
