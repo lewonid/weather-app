@@ -34,43 +34,20 @@ const CurrentWeather = ({ currentWeatherData, isLoading, forecastData }) => {
         var condition = currentWeatherData.current.condition.text;
     }
 // formatting time
-    // useEffect(() => {
-    //     if(isLoading === false){
-    //         const dateTime = new Date(currentWeatherData.location.localtime);
-    //         console.log(currentWeatherData.location.localtime);
-    //         const hours = dateTime.getHours();
-    //         const minutes = dateTime.getMinutes();
-    //         const formattedHours = hours.toString().padStart(2, '0');
-    //         const formattedMinutes = minutes.toString().padStart(2, '0');
-    //         const timeString = `${formattedHours}:${formattedMinutes}`;
-    //         setLocalHour(parseInt(formattedHours));
-    //         setLocalTime(timeString);
-    // }
-    // }, [currentWeatherData, isLoading])
-    // useEffect(() => {
-    //     if (isLoading === false && currentWeatherData && currentWeatherData.location && currentWeatherData.location.localtime) {
-    //       const dateTime = moment(currentWeatherData.location.localtime);
-    //       console.log(currentWeatherData.location.localtime);
-    //       const hours = dateTime.format('HH');
-    //       const minutes = dateTime.format('mm');
-    //       const timeString = `${hours}:${minutes}`;
-    //       setLocalHour(parseInt(hours));
-    //       setLocalTime(timeString);
-    //     }
-    //   }, [currentWeatherData, isLoading]);
     useEffect(() => {
-    if (isLoading === false && currentWeatherData && currentWeatherData.location && currentWeatherData.location.localtime) {
-        const dateTime = new Date(currentWeatherData.location.localtime);
-        const hours = new Intl.DateTimeFormat('en-US', {hour: 'numeric', hour12: false}).format(dateTime);
-        const minutes = new Intl.DateTimeFormat('en-US', {minute: 'numeric'}).format(dateTime);
-        const timeString = `${hours}:${minutes}`;
-        setLocalHour(parseInt(hours));
-        setLocalTime(timeString);
+        if(isLoading === false){
+            const dateTime = new Date(currentWeatherData.location.localtime);
+            // console.log(currentWeatherData.location.localtime);
+            const hours = dateTime.getHours();
+            const minutes = dateTime.getMinutes();
+            const formattedHours = hours.toString().padStart(2, '0');
+            const formattedMinutes = minutes.toString().padStart(2, '0');
+            const timeString = `${formattedHours}:${formattedMinutes}`;
+            setLocalHour(parseInt(formattedHours));
+            setLocalTime(timeString);
     }
-    }, [currentWeatherData, isLoading]);
-      
-    
-
+    }, [currentWeatherData, isLoading])
+ 
     if(forecastData.current){
         var feelsLike = forecastData.current.feelslike_c;
         var chanceOfRain = forecastData.forecast.forecastday[0].day.daily_chance_of_rain;
